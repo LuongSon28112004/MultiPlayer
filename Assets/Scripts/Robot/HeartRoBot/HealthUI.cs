@@ -21,53 +21,29 @@ public class HealthUI : NetworkBehaviour
         {
             healthText = GetComponent<TextMeshProUGUI>();
         }
-
         addOnChangeVariable();
+        if (playerHealth != null)
+        playerHealth.OnDamaged += UpdateUI;
     }
 
     private void addOnChangeVariable()
     {
         health.OnValueChanged += (oldValue, newValue) =>
         {
-            if (!IsOwner)
-            {
+            // if (!IsOwner)
+            // {
                 Debug.Log("HealthUI: " + newValue);
                 healthText.text = newValue.ToString();
-            }
+            //}
         };
     }
 
-    public override void OnNetworkSpawn()
-    {
-        if (playerHealth != null)
-        {
-            Debug.Log("Add UpdateUI");
-            playerHealth.OnDamaged += UpdateUI;
-        }
-    }
-
-    public override void OnNetworkDespawn()
-    {
-        if (playerHealth != null)
-            playerHealth.OnDamaged -= UpdateUI;
-    }
-    
-    void UpdateUI(int damage)
+    void UpdateUI()
     {
         if (IsOwner) healthText.text = playerHealth.CurrentHealth.ToString();
         if (IsHost || IsServer)
         {
             health.Value = playerHealth.CurrentHealth;
         }
-        else
-        {
-            sendHealthServerRpc(playerHealth.CurrentHealth);
-        }
-    }
-
-    [Rpc(SendTo.Server)]
-    private void sendHealthServerRpc(int health)
-    {
-        this.health.Value = health;
     }
 }

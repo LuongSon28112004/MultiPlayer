@@ -10,7 +10,12 @@ public class PlayerHealth : NetworkBehaviour
     public int CurrentHealth { get => currentHealth; }
 
     // Sự kiện khi nhận damage
-    public event Action<int> OnDamaged;
+    public event Action OnDamaged;
+
+    void Update()
+    {
+        //if(OnDamaged == null) Debug.LogError("OnDamaged is null");
+    }
 
     public void TakeDamage(int amount)
     {
@@ -20,9 +25,19 @@ public class PlayerHealth : NetworkBehaviour
         {
             currentHealth = 0;
         }
-        Debug.Log("Player nhận " + amount+ " damage. Máu còn: " + currentHealth);
+        Debug.Log("Player nhận " + amount + " damage. Máu còn: " + currentHealth);
         // Gọi sự kiện
-        if(OnDamaged == null) Debug.LogError("OnDamaged is null");
-        OnDamaged?.Invoke(amount);
+        if (OnDamaged == null) Debug.LogError("OnDamaged is null");
+        OnDamaged?.Invoke();
+        if(currentHealth <= 0)
+        {
+            // Gọi hàm chết ở đây
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        Destroy(gameObject); // Hoặc thực hiện hành
     }
 }

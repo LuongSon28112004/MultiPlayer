@@ -5,7 +5,7 @@ public class PlayerRobotShooting : NetworkBehaviour
 {
     int count = 0;
     private Vector3 right = new Vector3(2f, 0f, 0);
-    private Vector3 left = new Vector3(-3f, 0f, 0);
+    private Vector3 left = new Vector3(-2f, 0f, 0);
     private bool isFlipX = false;
     
     void Update()

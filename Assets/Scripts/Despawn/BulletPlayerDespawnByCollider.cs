@@ -15,7 +15,7 @@ public class BulletPlayerDespawnByCollider : DespawnByCollider
             var playerHealth = other.gameObject.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(1);
+                playerHealth.TakeDamage(10);
             }
             else
             {
