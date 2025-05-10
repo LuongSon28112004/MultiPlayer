@@ -287,14 +287,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2167098893
+  GlobalObjectIdHash: 1959050770
   InScenePlacedSourceGlobalObjectIdHash: 3879767402
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 1
+  SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
@@ -314,6 +314,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowTopMostFoldoutHeaderGroup: 1
   NetworkTransformExpanded: 0
+  AutoOwnerAuthorityTickOffset: 1
+  PositionInterpolationType: 0
+  RotationInterpolationType: 0
+  ScaleInterpolationType: 0
+  PositionLerpSmoothing: 1
+  PositionMaxInterpolationTime: 0.1
+  RotationLerpSmoothing: 1
+  RotationMaxInterpolationTime: 0.1
+  ScaleLerpSmoothing: 1
+  ScaleMaxInterpolationTime: 0.1
   AuthorityMode: 1
   TickSyncChildren: 0
   UseUnreliableDeltas: 0
@@ -438,6 +448,10 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   rb: {fileID: 0}
   spriteRenderer: {fileID: 0}
+  moveLeftButton: {fileID: 0}
+  moveRightButton: {fileID: 0}
+  jumpButton: {fileID: 0}
+  mobileUI: {fileID: 0}
   totalStepJump: 2
 --- !u!114 &6409999590416743188
 MonoBehaviour:

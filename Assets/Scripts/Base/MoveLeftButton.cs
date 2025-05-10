@@ -1,13 +1,21 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
 public class MoveLeftButton : BaseButton
 {
-    [SerializeField] private GameObject player;
     
+    public event Action OnMoveLeftButtonClicked;
      protected override void OnClick()
     {
-        player.transform.Translate(Vector3.left * 5.0f * Time.deltaTime);
+        if(OnMoveLeftButtonClicked == null)
+        {
+            Debug.Log("OnMoveLeftButtonClicked is null");
+            return;
+        }
+        Debug.Log("OnMoveLeftButtonClicked is not null");
+        OnMoveLeftButtonClicked?.Invoke();
+
     }
 
 }

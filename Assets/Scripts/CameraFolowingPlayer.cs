@@ -17,7 +17,7 @@ public class CameraFolowingPlayer : NetworkBehaviour
 
 
         // Tìm Player có NetworkObject là của mình
-        foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+        foreach (GameObject player in GameObject.FindGameObjectsWithTag("PlayerRobot"))
         {
             if (player.GetComponent<NetworkObject>().IsOwner)
             {

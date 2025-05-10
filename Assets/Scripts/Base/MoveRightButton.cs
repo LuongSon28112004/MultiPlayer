@@ -1,11 +1,12 @@
-using Unity.Netcode;
-using UnityEngine;
+using System;
+
 
 public class MoveRightButton : BaseButton
 {
-    [SerializeField] private GameObject player;
+    public event Action OnMoveRightButtonClicked;
+
     protected override void OnClick()
     {
-        player.transform.Translate(Vector3.right * 5.0f * Time.deltaTime);
+        OnMoveRightButtonClicked?.Invoke();
     }
 }

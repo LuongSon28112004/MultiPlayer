@@ -5,6 +5,9 @@ public class PlayerRobotMovement : NetworkBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private jumpButton jumpButton;
+    [SerializeField] private FixedJoystick joystick;
+
     NetworkVariable<bool> flipXVariable = new NetworkVariable<bool>(
         false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Server
     );
@@ -12,6 +15,27 @@ public class PlayerRobotMovement : NetworkBehaviour
     private float moveSpeed = 5.0f;
     [SerializeField] private int totalStepJump = 0;
 
+    public override void OnNetworkSpawn()
+    {
+        connectButtonEvents();
+    }
+
+    private void connectButtonEvents()
+    {
+        if (jumpButton == null)
+        {
+            jumpButton = FindFirstObjectByType<jumpButton>();
+        }
+        if (jumpButton != null)
+        {
+            jumpButton.OnJumpButtonClicked += moveVerticalMobile;
+        }
+
+        if (joystick == null)
+        {
+            joystick = FindFirstObjectByType<FixedJoystick>();
+        }
+    }
 
     void Start()
     {
@@ -25,6 +49,7 @@ public class PlayerRobotMovement : NetworkBehaviour
         if (IsOwner)
         {
             this.moveHorizontal();
+            this.moveHorizontalMobile();
             this.moveVertical();
             this.flipX();
         }
@@ -46,22 +71,40 @@ public class PlayerRobotMovement : NetworkBehaviour
         rb.linearVelocity = new Vector2(InputManager.Instance.HorizonrtalInput * moveSpeed, rb.linearVelocity.y);
     }
 
+    private void moveHorizontalMobile()
+    {
+        if (InputManager.Instance.HorizonrtalInput != 0) return;
+        rb.linearVelocity = new Vector2(joystick.Horizontal * moveSpeed, rb.linearVelocity.y);
+    }
+
     private void flipX()
     {
-        if (InputManager.Instance.HorizonrtalInput == 0) return;
-        bool value = InputManager.Instance.HorizonrtalInput < 0f ? true : false;
-        spriteRenderer.flipX = value;
-        if (IsHost || IsServer)
+        float inputX = Mathf.Abs(joystick.Horizontal) > 0 ? joystick.Horizontal : InputManager.Instance.HorizonrtalInput;
+        if (inputX != 0)
         {
-            flipXVariable.Value = value;
-        }
-        else ChangeFlipXSeverRPC(value);
+            bool value = inputX < 0f;
+            spriteRenderer.flipX = value;
 
+            if (IsHost || IsServer)
+                flipXVariable.Value = value;
+            else
+                ChangeFlipXSeverRPC(value);
+        }
     }
 
     private void moveVertical()
     {
         if (InputManager.Instance.IsSpace && totalStepJump < 2)
+        {
+            totalStepJump++;
+            rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
+            Debug.Log("totalStepJump: " + totalStepJump);
+        }
+    }
+
+    private void moveVerticalMobile()
+    {
+        if (totalStepJump < 2)
         {
             totalStepJump++;
             rb.AddForce(Vector3.up * jumpSpeed, ForceMode2D.Impulse);
