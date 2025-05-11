@@ -18,10 +18,10 @@
 ---
 
 ## 🎬 Video demo
-🔗 [Xem video demo trên YouTube]()
+🔗 [Xem video demo trên YouTube](https://youtube.com/shorts/fDydp62dJ7A?feature=share)
 
 ## 📥 Tải xuống
-🔗 [Link Tải File APK]()
+🔗 [Link Tải File APK](https://drive.google.com/file/d/114qtimbgt_B2ICnCCGstFvA99uIgDyH6/view?usp=sharing)
 
 
 ---
