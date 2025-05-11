@@ -18,43 +18,33 @@
 ---
 
 ## 🎬 Video demo
-🔗 [Xem video demo trên YouTube](https://www.youtube.com/watch?v=h-ciY5xss1E)
+🔗 [Xem video demo trên YouTube]()
 
 ## 📥 Tải xuống
-🔗 [Link Tải File APK](https://drive.google.com/file/d/12k0lMrrOCbr_KNZjxBLgjaHfiE5MxeB0/view?usp=sharing)
+🔗 [Link Tải File APK]()
 
 
 ---
 
 ## 🎮 Player Control
 
-- **Trên Mobile:** Nhấn vào cột bạn muốn thả đĩa.
-- **Trên PC:** Sử dụng chuột để chọn cột và thả đĩa.
+- **Trên Mobile:** di chuyển trái,phải bằng joystick nhảy và bắn bằng các nút trên màn hình 
+- **Trên PC: sử dụng A,D để di chuyển trái,phải space để nhảy và E để bắn  
 
 ---
 
 ## ✨ Features
 
 ### ✅ Gameplay Mechanics
-- Hai người chơi lần lượt thực hiện nước đi (chế độ 2 người).
-- Luật chơi chuẩn của Connect 4 với chiến thắng theo 4 hàng liên tiếp.
-- Thông báo kết quả: **Win** hoặc **lost** sau mỗi ván đấu.
-- Hiển thị lượt đi hiện tại và cập nhật theo thời gian thực.
-
-### ✅ AI đánh tự động
-- chế độ đánh với máy gồm 3 cấp độ,easy,medium,hard
-- sử dụng thuật toán minimax
-
-### ✅ Chế độ đánh với người
-- mỗi lượt chơi sẽ có 15s để suy nghĩ
-- hết time mà không đánh thì sẽ thua
+- các người chơi bắn nhau
+- ai hết hp trước sẽ thua 
 
 ### ✅ Visual and UX
 - Giao diện đơn giản, dễ nhìn và thân thiện với người dùng.
-- Hiệu ứng rơi đĩa mượt mà.
 
-### ✅ Sound and Music
-- Âm thanh khi thả đĩa , âm thanh nhạc nền và âm thanh đếm ngược thời gian.
-- Có thể thêm nhạc nền nhẹ nhàng cho trải nghiệm tốt hơn.
+## 🛠 Required Unity Version
 
----
+- Yêu cầu Unity Editor phiên bản **2022.3 LTS** hoặc mới hơn.
+- Nếu bạn muốn tùy chỉnh và build file APK, hãy đảm bảo đã cài đặt **Android Build Support Module** trong Unity Hub.
+- cài Netcode for gameobject 
+
